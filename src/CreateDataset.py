@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 from DicesFields import Fields
-from utils.utils import set_env_variables
+from utils import get_env_variables
 
 MAJORITY_OVERALL_KEY_NAME = Fields.MAJORITY_Q_OVERALL.value
 CONTEXT = Fields.CONTEXT.value
@@ -9,11 +9,9 @@ RESPONSE = Fields.RESPONSE.value
 RELEVENT_KEYS = [CONTEXT, RESPONSE, Fields.DEGREE_OF_HARM.value, 
                  MAJORITY_OVERALL_KEY_NAME, Fields.RATER_RACE.value]
 
-base_dir = ""
-set_env_variables("ROOT_DIR", base_dir)
+base_dir = get_env_variables("ROOT_DIR")
 
-DATA_DIR = ""
-set_env_variables("DATA_DIR", DATA_DIR)
+DATA_DIR = get_env_variables("DATA_DIR")
 
 def get_max_overall_safety(series):
     return series.mode()[0]
@@ -45,7 +43,7 @@ def open_data(paths: list[str]) -> list[pd.DataFrame]:
 
 def create_dataset():
     dices_paths = [os.path.join(DATA_DIR, "dices/350/diverse_safety_adversarial_dialog_350.csv"),
-                   os.path.join(DATA_DIR, "dices/990/diverse_safety_adversarial_dialog_350.csv"),
+                   os.path.join(DATA_DIR, "dices/990/diverse_safety_adversarial_dialog_990.csv"),
                    ]
 
     # joining all the dices data set together 
@@ -78,8 +76,8 @@ def run():
 
     output = "CREATED DATA"
 
-    if (os.path.exists(os.path.join(DATA_DIR, "dices/white_responses.csv")) and 
-        os.path.exists(os.path.join(DATA_DIR, "dices/non_white_responses.csv"))):
+    if (os.path.exists(os.path.join(DATA_DIR, "custom/white_responses.csv")) and 
+        os.path.exists(os.path.join(DATA_DIR, "custom/non_white_responses.csv"))):
         output = "DATA ALREADY EXIST"
     else:
         create_dataset()
