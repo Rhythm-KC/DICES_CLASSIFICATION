@@ -30,7 +30,7 @@ def set_env_variables(env_path, args):
 def make_dir(path):
     if not os.path.exists(path):
         print(f"Creating directory {path}")
-        os.mkdir(path)
+        os.makedirs(path, exist_ok=True)
 
 
 def create_dir():
