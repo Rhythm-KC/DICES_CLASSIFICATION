@@ -69,8 +69,8 @@ def create_dataset():
     replace_string(dices_non_white, CONTEXT, "\n", "\\n")
     replace_string(dices_non_white, RESPONSE, "\n", "\\n")
 
-    dices_white.to_csv(os.path.join(DATA_DIR, "dices/white_responses.csv"), sep=",")
-    dices_non_white.to_csv(os.path.join(DATA_DIR, "dices/non_white_responses.csv"), sep=",")
+    dices_white.to_csv(os.path.join(DATA_DIR, "custom/white_responses.csv"), sep=",")
+    dices_non_white.to_csv(os.path.join(DATA_DIR, "custom/non_white_responses.csv"), sep=",")
 
 def run():
 
