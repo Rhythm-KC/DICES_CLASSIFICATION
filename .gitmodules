@@ -1,0 +1,3 @@
+[submodule "data/dices"]
+	path = data/dices
+	url = git@github.com:google-research-datasets/dices-dataset.git
