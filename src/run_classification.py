@@ -191,6 +191,9 @@ def main():
     non_white_dataset = create_dataset(non_white_data_path, size=dataset_size)
     white_dataset = create_dataset(white_data_path, size=dataset_size)
 
+    outpath = os.path.join(output_dir, "dices_classification") 
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
 
     for model_name in list_of_models:
 
@@ -200,7 +203,7 @@ def main():
         model = get_models(model_name, tokenizer)
         model = model.to(device)
 
-        outpath = os.path.join(output_dir, "dices_classification") 
+
 
         # white classification
         classification_data_for_white_raters = make_calssification(model, tokenizer, white_dataset,device)

@@ -35,17 +35,16 @@ def make_dir(path):
 
 def create_dir():
     # CUSTOM DATA DIRECTORY
-    DATA_PATH = os.getenv("DATA_DIR")
-    custom_data_dir = os.path.join(DATA_PATH, "custom")
+    data_path= os.getenv("DATA_DIR")
+    custom_data_dir = os.path.join(data_path, "custom")
     make_dir(custom_data_dir)
+
 
     # create logs folder with sbatch_err and sbactch_log
     log_path = os.path.join(os.getenv("ROOT_DIR"), "logs/sbatch_log")
     err_path = os.path.join(os.getenv("ROOT_DIR"), "logs/sbatch_err")
     make_dir(log_path)
     make_dir(err_path)
-
-
 
 
 def main():
