@@ -34,9 +34,9 @@ if $local; then
 fi
 
 if $debug; then
-    sbatch srcipts/rc_deployment_dices_debug.sh
+    sbatch scripts/rc_deployment_dices_debug.sh
 fi
 
 if $deploy; then
-    sbatch srcipts/rc_deployment_dices.sh
+    sbatch scripts/rc_deployment_dices.sh
 fi
