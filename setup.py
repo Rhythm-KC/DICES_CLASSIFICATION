@@ -3,7 +3,8 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv, set_key
 
-def set_env_variables():
+def set_env_variables(env_path, args):
+    root_dir = args.project_dir
     if not os.getenv("ROOT_DIR"):
         print("Saving ROOT_DIR as env variable")
         set_key(env_path, "ROOT_DIR", root_dir)
@@ -26,14 +27,25 @@ def set_env_variables():
         print("Saving DATA_DIR as env variable")
         set_key(env_path, "OUTPUT_DIR", DATA_DIR)
 
+def make_dir(path):
+    if not os.path.exists(path):
+        print(f"Creating directory {path}")
+        os.mkdir(path)
+
+
 def create_dir():
+    # CUSTOM DATA DIRECTORY
     DATA_PATH = os.getenv("DATA_DIR")
     custom_data_dir = os.path.join(DATA_PATH, "custom")
-    if not os.path.exists(custom_data_dir):
-        print("Creating dir for custom data")
-        os.mkdir(custom_data_dir)
+    make_dir(custom_data_dir)
 
-    
+    # create logs folder with sbatch_err and sbactch_log
+    log_path = os.path.join(os.getenv("ROOT_DIR"), "logs/sbatch_log")
+    err_path = os.path.join(os.getenv("ROOT_DIR"), "logs/sbatch_err")
+    make_dir(log_path)
+    make_dir(err_path)
+
+
 
 
 def main():
@@ -50,7 +62,7 @@ def main():
         env_path.touch()
 
     load_dotenv(env_path)    
-    set_env_variables()
+    set_env_variables(env_path, args)
     create_dir()
 
 
