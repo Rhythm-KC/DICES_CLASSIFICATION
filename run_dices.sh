@@ -26,7 +26,7 @@ while getopts "lds" opt; do
     esac
 done
 
-conda acitvate finetuinig
+conda activate finetuning
 cd "$SCRIPT_DIR"
 
 if $local; then
